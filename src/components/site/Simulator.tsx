@@ -11,24 +11,59 @@ const modalities = [
   { id: "portabilidade", label: "Portabilidade", rate: 0.0145 },
 ] as const;
 
+// Limites do simulador (fonte única da verdade)
+const AMOUNT_MIN = 1000;
+const AMOUNT_MAX = 200000;
+const AMOUNT_STEP = 500;
+const TERM_MIN = 12;
+const TERM_MAX = 120;
+const TERM_STEP = 6;
+
+/** Garante número finito dentro de [min, max], arredondando ao step. */
+const clampToStep = (value: unknown, min: number, max: number, step: number, fallback: number) => {
+  const n = typeof value === "number" ? value : Number(value);
+  if (!Number.isFinite(n)) return fallback;
+  const bounded = Math.min(max, Math.max(min, n));
+  return Math.round(bounded / step) * step;
+};
+
+/** Cálculo Price seguro: nunca retorna NaN/Infinity. */
+const calcInstallment = (pv: number, rate: number, n: number) => {
+  if (!Number.isFinite(pv) || !Number.isFinite(rate) || !Number.isFinite(n)) return 0;
+  if (pv <= 0 || n <= 0) return 0;
+  if (rate <= 0) return pv / n; // sem juros: amortização linear
+  const denom = 1 - Math.pow(1 + rate, -n);
+  if (denom <= 0) return 0;
+  const pmt = (pv * rate) / denom;
+  return Number.isFinite(pmt) ? pmt : 0;
+};
+
 const formatBRL = (v: number) =>
-  v.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+  (Number.isFinite(v) ? v : 0).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    maximumFractionDigits: 0,
+  });
 
 type Props = { onSimulate: (data: { modality: string; amount: number; term: number; installment: number }) => void };
 
 export const Simulator = ({ onSimulate }: Props) => {
-  const [amount, setAmount] = useState(15000);
-  const [term, setTerm] = useState(60);
+  const [amount, setAmount] = useState<number>(15000);
+  const [term, setTerm] = useState<number>(60);
   const [modalityId, setModalityId] = useState<typeof modalities[number]["id"]>("inss");
 
-  const modality = modalities.find((m) => m.id === modalityId)!;
+  const modality = modalities.find((m) => m.id === modalityId) ?? modalities[0];
 
-  const installment = useMemo(() => {
-    // Price formula: PMT = PV * i / (1 - (1+i)^-n)
-    const i = modality.rate;
-    const n = term;
-    return (amount * i) / (1 - Math.pow(1 + i, -n));
-  }, [amount, term, modality]);
+  // Saneamento dos inputs antes do cálculo — defesa contra valores extremos/inválidos.
+  const safeAmount = clampToStep(amount, AMOUNT_MIN, AMOUNT_MAX, AMOUNT_STEP, 15000);
+  const safeTerm = clampToStep(term, TERM_MIN, TERM_MAX, TERM_STEP, 60);
+
+  const installment = useMemo(
+    () => calcInstallment(safeAmount, modality.rate, safeTerm),
+    [safeAmount, safeTerm, modality.rate],
+  );
+
+  const total = Number.isFinite(installment * safeTerm) ? installment * safeTerm : 0;
 
   return (
     <section id="simulador" className="py-20 md:py-28 bg-gradient-to-b from-secondary/40 to-background">
@@ -68,14 +103,16 @@ export const Simulator = ({ onSimulate }: Props) => {
               <div>
                 <div className="flex items-baseline justify-between">
                   <label className="text-sm font-semibold text-foreground">Valor desejado</label>
-                  <span className="text-2xl font-extrabold text-primary">{formatBRL(amount)}</span>
+                  <span className="text-2xl font-extrabold text-primary">{formatBRL(safeAmount)}</span>
                 </div>
                 <Slider
-                  value={[amount]}
-                  min={1000}
-                  max={200000}
-                  step={500}
-                  onValueChange={([v]) => setAmount(v)}
+                  value={[safeAmount]}
+                  min={AMOUNT_MIN}
+                  max={AMOUNT_MAX}
+                  step={AMOUNT_STEP}
+                  onValueChange={([v]) =>
+                    setAmount(clampToStep(v, AMOUNT_MIN, AMOUNT_MAX, AMOUNT_STEP, safeAmount))
+                  }
                   className="mt-4"
                 />
                 <div className="flex justify-between text-xs text-muted-foreground mt-2">
@@ -86,14 +123,16 @@ export const Simulator = ({ onSimulate }: Props) => {
               <div>
                 <div className="flex items-baseline justify-between">
                   <label className="text-sm font-semibold text-foreground">Prazo</label>
-                  <span className="text-2xl font-extrabold text-primary">{term} meses</span>
+                  <span className="text-2xl font-extrabold text-primary">{safeTerm} meses</span>
                 </div>
                 <Slider
-                  value={[term]}
-                  min={12}
-                  max={120}
-                  step={6}
-                  onValueChange={([v]) => setTerm(v)}
+                  value={[safeTerm]}
+                  min={TERM_MIN}
+                  max={TERM_MAX}
+                  step={TERM_STEP}
+                  onValueChange={([v]) =>
+                    setTerm(clampToStep(v, TERM_MIN, TERM_MAX, TERM_STEP, safeTerm))
+                  }
                   className="mt-4"
                 />
                 <div className="flex justify-between text-xs text-muted-foreground mt-2">
@@ -108,7 +147,7 @@ export const Simulator = ({ onSimulate }: Props) => {
                   <Calculator className="h-4 w-4" /> Parcela estimada
                 </div>
                 <p className="mt-3 text-5xl font-extrabold tracking-tight">{formatBRL(installment)}</p>
-                <p className="mt-1 text-sm text-primary-foreground/70">por mês durante {term} meses</p>
+                <p className="mt-1 text-sm text-primary-foreground/70">por mês durante {safeTerm} meses</p>
 
                 <div className="mt-8 space-y-3 text-sm">
                   <div className="flex justify-between border-b border-primary-foreground/15 pb-2">
@@ -121,7 +160,7 @@ export const Simulator = ({ onSimulate }: Props) => {
                   </div>
                   <div className="flex justify-between border-b border-primary-foreground/15 pb-2">
                     <span className="text-primary-foreground/70">Total estimado</span>
-                    <span className="font-semibold">{formatBRL(installment * term)}</span>
+                    <span className="font-semibold">{formatBRL(total)}</span>
                   </div>
                 </div>
               </div>
@@ -129,7 +168,7 @@ export const Simulator = ({ onSimulate }: Props) => {
               <div className="mt-8">
                 <Button
                   onClick={() =>
-                    onSimulate({ modality: modality.label, amount, term, installment })
+                    onSimulate({ modality: modality.label, amount: safeAmount, term: safeTerm, installment })
                   }
                   className="w-full bg-accent hover:bg-accent/90 text-accent-foreground rounded-full font-semibold"
                   size="lg"
