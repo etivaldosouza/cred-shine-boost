@@ -1,9 +1,10 @@
 import { ArrowRight, MessageCircle, ShieldCheck, HeartHandshake, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { buildWhatsappLink } from "./constants";
+import { buildWhatsappLink, useSiteConfig } from "@/config/site-config";
 import heroImg from "@/assets/hero-couple.jpg";
 
 export const Hero = () => {
+  const config = useSiteConfig();
   return (
     <section id="inicio" className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,hsl(var(--primary)/0.08),transparent_55%),radial-gradient(ellipse_at_bottom_right,hsl(var(--accent)/0.08),transparent_55%)]" />
@@ -25,7 +26,7 @@ export const Hero = () => {
               <a href="#simulador">Simular agora <ArrowRight /></a>
             </Button>
             <Button asChild size="lg" variant="outline" className="rounded-full border-primary/20 hover:bg-primary/5">
-              <a href={buildWhatsappLink("Olá! Gostaria de informações sobre empréstimo consignado.")} target="_blank" rel="noopener">
+              <a href={buildWhatsappLink(config.whatsappNumber, "Olá! Gostaria de informações sobre empréstimo consignado.")} target="_blank" rel="noopener">
                 <MessageCircle /> Falar no WhatsApp
               </a>
             </Button>

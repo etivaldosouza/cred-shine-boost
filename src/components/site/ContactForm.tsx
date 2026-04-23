@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { MessageCircle } from "lucide-react";
 import { toast } from "sonner";
-import { buildWhatsappLink } from "./constants";
+import { buildWhatsappLink, useSiteConfig } from "@/config/site-config";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Informe seu nome").max(100),
@@ -23,6 +23,7 @@ export type ContactPrefill = {
 } | null;
 
 export const ContactForm = ({ prefill }: { prefill: ContactPrefill }) => {
+  const config = useSiteConfig();
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -65,7 +66,7 @@ export const ContactForm = ({ prefill }: { prefill: ContactPrefill }) => {
 *Modalidade:* ${result.data.modality}%0A
 *Valor desejado:* ${result.data.amount}%0A
 ${result.data.message ? `*Mensagem:* ${result.data.message}` : ""}`;
-    window.open(buildWhatsappLink(msg.replace(/%0A/g, "\n")), "_blank", "noopener");
+    window.open(buildWhatsappLink(config.whatsappNumber, msg.replace(/%0A/g, "\n")), "_blank", "noopener");
     toast.success("Redirecionando para o WhatsApp...");
   };
 
