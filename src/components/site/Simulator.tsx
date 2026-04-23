@@ -103,7 +103,7 @@ export const Simulator = ({ onSimulate }: Props) => {
               <div>
                 <div className="flex items-baseline justify-between">
                   <label className="text-sm font-semibold text-foreground">Valor desejado</label>
-                  <span className="text-2xl font-extrabold text-primary">{formatBRL(amount)}</span>
+                  <span className="text-2xl font-extrabold text-primary">{formatBRL(safeAmount)}</span>
                 </div>
                 <Slider
                   value={[safeAmount]}
@@ -147,7 +147,7 @@ export const Simulator = ({ onSimulate }: Props) => {
                   <Calculator className="h-4 w-4" /> Parcela estimada
                 </div>
                 <p className="mt-3 text-5xl font-extrabold tracking-tight">{formatBRL(installment)}</p>
-                <p className="mt-1 text-sm text-primary-foreground/70">por mês durante {term} meses</p>
+                <p className="mt-1 text-sm text-primary-foreground/70">por mês durante {safeTerm} meses</p>
 
                 <div className="mt-8 space-y-3 text-sm">
                   <div className="flex justify-between border-b border-primary-foreground/15 pb-2">
@@ -160,7 +160,7 @@ export const Simulator = ({ onSimulate }: Props) => {
                   </div>
                   <div className="flex justify-between border-b border-primary-foreground/15 pb-2">
                     <span className="text-primary-foreground/70">Total estimado</span>
-                    <span className="font-semibold">{formatBRL(installment * term)}</span>
+                    <span className="font-semibold">{formatBRL(total)}</span>
                   </div>
                 </div>
               </div>
@@ -168,7 +168,7 @@ export const Simulator = ({ onSimulate }: Props) => {
               <div className="mt-8">
                 <Button
                   onClick={() =>
-                    onSimulate({ modality: modality.label, amount, term, installment })
+                    onSimulate({ modality: modality.label, amount: safeAmount, term: safeTerm, installment })
                   }
                   className="w-full bg-accent hover:bg-accent/90 text-accent-foreground rounded-full font-semibold"
                   size="lg"
