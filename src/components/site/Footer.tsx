@@ -1,8 +1,10 @@
 import { Facebook, Instagram, Linkedin } from "lucide-react";
 import logo from "@/assets/kf-logo.png";
-import { COMPANY_EMAIL, WHATSAPP_DISPLAY } from "./constants";
+import { useSiteConfig } from "@/config/site-config";
 
-export const Footer = () => (
+export const Footer = () => {
+  const config = useSiteConfig();
+  return (
   <footer className="bg-primary text-primary-foreground pt-16 pb-8">
     <div className="container-page grid gap-10 md:grid-cols-4">
       <div className="md:col-span-2">
@@ -35,9 +37,9 @@ export const Footer = () => (
       <div>
         <h4 className="font-semibold mb-4">Contato</h4>
         <ul className="space-y-2 text-sm text-primary-foreground/70">
-          <li>{WHATSAPP_DISPLAY}</li>
-          <li>{COMPANY_EMAIL}</li>
-          <li>São Luís - MA</li>
+          <li>{config.whatsappDisplay}</li>
+          <li>{config.email}</li>
+          <li>{config.address}</li>
         </ul>
       </div>
     </div>
@@ -49,4 +51,5 @@ export const Footer = () => (
       <p>© {new Date().getFullYear()} KF Empréstimos. Todos os direitos reservados.</p>
     </div>
   </footer>
-);
+  );
+};
