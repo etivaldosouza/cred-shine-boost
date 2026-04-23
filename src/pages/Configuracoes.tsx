@@ -11,6 +11,7 @@ import {
   resetSiteConfig,
   saveSiteConfig,
   useSiteConfig,
+  type SiteConfig,
 } from "@/config/site-config";
 
 const schema = z.object({
@@ -60,7 +61,7 @@ const Configuracoes = () => {
       return;
     }
     setErrors({});
-    saveSiteConfig(result.data);
+    saveSiteConfig(result.data as SiteConfig);
     toast.success("Configurações salvas com sucesso");
   };
 
