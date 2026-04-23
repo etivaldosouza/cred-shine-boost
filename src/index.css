@@ -8,50 +8,62 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
+    /* KF Empréstimos — clean & corporate light */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Deep corporate blue */
+    --primary: 218 84% 22%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 218 90% 38%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 215 30% 96%;
+    --secondary-foreground: 218 84% 22%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 215 25% 96%;
+    --muted-foreground: 215 16% 42%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* KF orange accent */
+    --accent: 22 95% 54%;
+    --accent-foreground: 0 0% 100%;
+    --accent-soft: 30 100% 96%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --success: 152 65% 38%;
+    --success-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --radius: 0.5rem;
+    --border: 215 25% 91%;
+    --input: 215 25% 91%;
+    --ring: 218 84% 22%;
+
+    --radius: 0.875rem;
+
+    --gradient-hero: linear-gradient(135deg, hsl(218 84% 22%) 0%, hsl(218 90% 32%) 60%, hsl(220 90% 42%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(22 95% 54%), hsl(18 95% 60%));
+    --gradient-soft: linear-gradient(180deg, hsl(0 0% 100%), hsl(215 30% 98%));
+
+    --shadow-sm: 0 1px 2px hsl(218 40% 20% / 0.04);
+    --shadow-md: 0 8px 24px -8px hsl(218 50% 22% / 0.12);
+    --shadow-lg: 0 24px 48px -16px hsl(218 60% 22% / 0.18);
+    --shadow-glow: 0 12px 40px -12px hsl(22 95% 54% / 0.45);
+
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -100,6 +112,40 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  .gradient-accent {
+    background: var(--gradient-accent);
+  }
+  .shadow-soft {
+    box-shadow: var(--shadow-md);
+  }
+  .shadow-elevated {
+    box-shadow: var(--shadow-lg);
+  }
+  .shadow-glow-accent {
+    box-shadow: var(--shadow-glow);
+  }
+  .animate-fade-up {
+    animation: fade-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
 }
