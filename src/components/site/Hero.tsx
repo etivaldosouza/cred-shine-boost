@@ -23,7 +23,7 @@ export const Hero = () => {
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
             <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full font-semibold shadow-glow-accent">
-              <a href="#simulador">Simular agora <ArrowRight /></a>
+              <a href="#contato">Simular agora <ArrowRight /></a>
             </Button>
             <Button asChild size="lg" variant="outline" className="rounded-full border-primary/20 hover:bg-primary/5">
               <a href={buildWhatsappLink(config.whatsappNumber, "Olá! Gostaria de informações sobre empréstimo consignado.")} target="_blank" rel="noopener">

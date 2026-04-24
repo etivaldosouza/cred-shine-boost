@@ -6,7 +6,6 @@ import logo from "@/assets/kf-logo.png";
 const links = [
   { href: "#inicio", label: "Início" },
   { href: "#servicos", label: "Serviços" },
-  { href: "#simulador", label: "Simulador" },
   { href: "#como-funciona", label: "Como funciona" },
   { href: "#contato", label: "Contato" },
 ];
@@ -52,7 +51,7 @@ export const Header = () => {
 
         <div className="hidden md:block">
           <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold rounded-full px-6">
-            <a href="#simulador">Simular agora</a>
+            <a href="#contato">Simular agora</a>
           </Button>
         </div>
 
@@ -79,7 +78,7 @@ export const Header = () => {
               </a>
             ))}
             <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground mt-2 rounded-full">
-              <a href="#simulador" onClick={() => setOpen(false)}>Simular agora</a>
+              <a href="#contato" onClick={() => setOpen(false)}>Simular agora</a>
             </Button>
           </div>
         </div>
