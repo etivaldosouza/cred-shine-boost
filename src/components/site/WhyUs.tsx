@@ -8,7 +8,7 @@ const items = [
 ];
 
 export const WhyUs = () => (
-  <section className="py-20 md:py-28 bg-secondary/40">
+  <section id="sobre-nos" className="py-20 md:py-28 bg-secondary/40">
     <div className="container-page">
       <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
         <div>
@@ -20,7 +20,7 @@ export const WhyUs = () => (
             Somos uma empresa certificada pela FEBRABAN e há 16 anos atuando com concessão de crédito consignado.
           </p>
         </div>
-        <div className="space-y-4 text-foreground/80 leading-relaxed">
+        <div className="space-y-3 text-foreground/80 leading-relaxed">
           <p>
             A KF Empréstimos se estabeleceu como referência no mercado de crédito consignado. Nossa missão é facilitar o acesso ao crédito consignado de forma segura e transparente, proporcionando as melhores condições para nossos clientes.
           </p>
