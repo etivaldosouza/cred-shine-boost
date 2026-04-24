@@ -59,14 +59,18 @@ export const ContactForm = ({ prefill }: { prefill: ContactPrefill }) => {
       return;
     }
     setErrors({});
-    const msg = `Olá, KF Empréstimos! Gostaria de uma simulação:%0A
-*Nome:* ${result.data.name}%0A
-*Telefone:* ${result.data.phone}%0A
-*E-mail:* ${result.data.email}%0A
-*Modalidade:* ${result.data.modality}%0A
-*Valor desejado:* ${result.data.amount}%0A
-${result.data.message ? `*Mensagem:* ${result.data.message}` : ""}`;
-    window.open(buildWhatsappLink(config.whatsappNumber, msg.replace(/%0A/g, "\n")), "_blank", "noopener");
+    const msg = [
+      "Olá, KF Empréstimos! Gostaria de uma simulação:",
+      `*Nome:* ${result.data.name}`,
+      `*Telefone:* ${result.data.phone}`,
+      `*E-mail:* ${result.data.email}`,
+      `*Modalidade:* ${result.data.modality}`,
+      `*Valor desejado:* ${result.data.amount}`,
+      result.data.message ? `*Mensagem:* ${result.data.message}` : null,
+    ]
+      .filter(Boolean)
+      .join("\n");
+    window.open(buildWhatsappLink(config.whatsappNumber, msg), "_blank", "noopener");
     toast.success("Redirecionando para o WhatsApp...");
   };
 

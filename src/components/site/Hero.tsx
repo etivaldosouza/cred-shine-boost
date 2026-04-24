@@ -62,8 +62,8 @@ export const Hero = () => {
               <ShieldCheck className="h-5 w-5" />
             </div>
             <div>
-              <p className="text-xs text-muted-foreground">Taxa a partir de</p>
-              <p className="text-lg font-bold text-primary">1,55% a.m.</p>
+              <p className="text-xs text-muted-foreground">Empresa certificada</p>
+              <p className="text-lg font-bold text-primary">FEBRABAN</p>
             </div>
           </div>
         </div>

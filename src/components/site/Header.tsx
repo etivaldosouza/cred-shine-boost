@@ -32,7 +32,7 @@ export const Header = () => {
       <div className="container-page flex h-16 items-center justify-between md:h-20">
         <a href="#inicio" className="flex items-center gap-2" aria-label="KF Empréstimos">
           <img src={logo} alt="KF Empréstimos" width={40} height={40} className="h-10 w-10" />
-          <span className="font-bold text-primary tracking-tight text-lg hidden sm:block">
+          <span className="font-bold text-primary tracking-tight text-lg uppercase">
             KF <span className="text-accent">Empréstimos</span>
           </span>
         </a>
