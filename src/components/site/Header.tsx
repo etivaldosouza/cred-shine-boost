@@ -5,6 +5,7 @@ import logo from "@/assets/kf-logo.png";
 
 const links = [
   { href: "#inicio", label: "Início" },
+  { href: "#sobre-nos", label: "Sobre nós" },
   { href: "#servicos", label: "Serviços" },
   { href: "#como-funciona", label: "Como funciona" },
   { href: "#contato", label: "Contato" },
