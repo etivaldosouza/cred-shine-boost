@@ -25,6 +25,7 @@ const schema = z.object({
   email: z.string().trim().email("E-mail inválido").max(255),
   address: z.string().trim().min(3, "Informe o endereço").max(200),
   hours: z.string().trim().min(3, "Informe o horário").max(120),
+  instagramUrl: z.string().trim().url("URL inválida").max(500).optional(),
 });
 
 const fields: { key: keyof typeof DEFAULT_SITE_CONFIG; label: string; hint?: string; placeholder?: string }[] = [
@@ -40,9 +41,10 @@ const fields: { key: keyof typeof DEFAULT_SITE_CONFIG; label: string; hint?: str
     hint: "Como aparece no site. Ex.: (98) 99999-9999",
     placeholder: "(98) 99999-9999",
   },
-  { key: "email", label: "E-mail de contato", placeholder: "contato@kfemprestimos.com.br" },
-  { key: "address", label: "Endereço", placeholder: "São Luís - MA" },
-  { key: "hours", label: "Horário de atendimento", placeholder: "Segunda a sexta, 9h às 18h" },
+  { key: "email", label: "E-mail de contato", placeholder: "kfemprestimos@gmail.com" },
+  { key: "address", label: "Endereço", placeholder: "Av. Leste-Oeste, Cohatrac I, São Luís - MA" },
+  { key: "hours", label: "Horário de atendimento", placeholder: "Segunda a sexta, 8h às 18h" },
+  { key: "instagramUrl", label: "Instagram", hint: "Link completo do perfil", placeholder: "https://www.instagram.com/kfemprestimos" },
 ];
 
 const Configuracoes = () => {
