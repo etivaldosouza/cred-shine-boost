@@ -16,7 +16,7 @@ export const DEFAULT_SITE_CONFIG: SiteConfig = {
   email: "kfemprestimos@gmail.com",
   address: "Av. Leste-Oeste, Cohatrac I, São Luís - MA",
   hours: "Segunda a sexta, 8h às 18h",
-  instagramUrl: "https://www.instagram.com/kfemprestimos",
+  instagramUrl: "https://www.instagram.com/kfemprestimos?igsh=bG92MDFyYXU1MWQx",
 };
 
 const STORAGE_KEY = "kf:site-config";

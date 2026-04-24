@@ -16,8 +16,8 @@ export const Footer = () => {
           Soluções de crédito consignado para aposentados, pensionistas e servidores públicos em São Luís - MA.
         </p>
         <div className="mt-5 flex gap-3">
-          <a href={config.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="h-9 w-9 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition-colors">
-            <Instagram className="h-4 w-4" />
+          <a href={config.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="h-9 w-9 rounded-full bg-gradient-to-br from-[#833AB4] via-[#E1306C] to-[#FCAF45] flex items-center justify-center transition-opacity hover:opacity-90">
+            <Instagram className="h-4 w-4 text-white" />
           </a>
           <a href="#" aria-label="Facebook" className="h-9 w-9 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition-colors">
             <Facebook className="h-4 w-4" />
