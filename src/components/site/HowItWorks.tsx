@@ -1,7 +1,7 @@
 import { ClipboardList, Send, Search, BadgeDollarSign } from "lucide-react";
 
 const steps = [
-  { icon: ClipboardList, title: "Simule", desc: "Escolha modalidade, valor e prazo no nosso simulador." },
+  { icon: ClipboardList, title: "Solicite", desc: "Informe modalidade, valor desejado e seus dados no formulário." },
   { icon: Send, title: "Envie seus dados", desc: "Preencha o formulário ou fale conosco no WhatsApp." },
   { icon: Search, title: "Análise rápida", desc: "Nossa equipe avalia sua proposta em poucas horas." },
   { icon: BadgeDollarSign, title: "Dinheiro na conta", desc: "Após aprovação, o valor cai diretamente na sua conta." },
