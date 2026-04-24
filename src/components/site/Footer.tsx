@@ -16,11 +16,15 @@ export const Footer = () => {
           Soluções de crédito consignado para aposentados, pensionistas e servidores públicos em São Luís - MA.
         </p>
         <div className="mt-5 flex gap-3">
-          {[Facebook, Instagram, Linkedin].map((Icon, i) => (
-            <a key={i} href="#" aria-label="Rede social" className="h-9 w-9 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition-colors">
-              <Icon className="h-4 w-4" />
-            </a>
-          ))}
+          <a href={config.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="h-9 w-9 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition-colors">
+            <Instagram className="h-4 w-4" />
+          </a>
+          <a href="#" aria-label="Facebook" className="h-9 w-9 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition-colors">
+            <Facebook className="h-4 w-4" />
+          </a>
+          <a href="#" aria-label="LinkedIn" className="h-9 w-9 rounded-full bg-white/10 hover:bg-accent flex items-center justify-center transition-colors">
+            <Linkedin className="h-4 w-4" />
+          </a>
         </div>
       </div>
 
