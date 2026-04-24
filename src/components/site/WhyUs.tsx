@@ -1,4 +1,5 @@
 import { HeartHandshake, TrendingDown, Smartphone, MapPin } from "lucide-react";
+import febrabanLogo from "@/assets/febraban-logo.svg";
 
 const items = [
   { icon: HeartHandshake, title: "Atendimento personalizado", desc: "Cada cliente é único. Cuidamos de você do início ao fim." },
@@ -17,7 +18,12 @@ export const WhyUs = () => (
             Nossa História
           </h2>
           <p className="mt-5 text-lg text-muted-foreground">
-            Somos uma empresa certificada pela FEBRABAN e há 16 anos atuando com concessão de crédito consignado.
+            Somos uma empresa certificada pela{" "}
+            <span className="inline-flex items-center gap-1.5 align-middle font-semibold text-primary">
+              <img src={febrabanLogo} alt="FEBRABAN" width={18} height={22} className="h-5 w-auto" />
+              FEBRABAN
+            </span>{" "}
+            e há 16 anos atuando com concessão de crédito consignado.
           </p>
         </div>
         <div className="space-y-3 text-foreground/80 leading-relaxed">
