@@ -28,7 +28,7 @@ export const Footer = () => {
         <h4 className="font-semibold mb-4">Links rápidos</h4>
         <ul className="space-y-2 text-sm text-primary-foreground/70">
           <li><a href="#servicos" className="hover:text-accent">Serviços</a></li>
-          <li><a href="#simulador" className="hover:text-accent">Simulador</a></li>
+          <li><a href="#contato" className="hover:text-accent">Simular agora</a></li>
           <li><a href="#como-funciona" className="hover:text-accent">Como funciona</a></li>
           <li><a href="#contato" className="hover:text-accent">Contato</a></li>
         </ul>
