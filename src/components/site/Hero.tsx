@@ -2,6 +2,7 @@ import { ArrowRight, MessageCircle, ShieldCheck, HeartHandshake, Zap } from "luc
 import { Button } from "@/components/ui/button";
 import { buildWhatsappLink, useSiteConfig } from "@/config/site-config";
 import heroImg from "@/assets/hero-couple.jpg";
+import febrabanLogo from "@/assets/febraban-logo.svg";
 
 export const Hero = () => {
   const config = useSiteConfig();
@@ -63,7 +64,10 @@ export const Hero = () => {
             </div>
             <div>
               <p className="text-xs text-muted-foreground">Empresa certificada</p>
-              <p className="text-lg font-bold text-primary">FEBRABAN</p>
+              <p className="flex items-center gap-2 text-lg font-bold text-primary">
+                <img src={febrabanLogo} alt="FEBRABAN" width={22} height={27} className="h-7 w-auto" />
+                FEBRABAN
+              </p>
             </div>
           </div>
         </div>

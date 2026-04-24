@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/kf-logo.png";
-import febrabanLogo from "@/assets/febraban-logo.svg";
 
 const links = [
   { href: "#inicio", label: "Início" },
@@ -34,9 +33,8 @@ export const Header = () => {
       <div className="container-page flex h-16 items-center justify-between md:h-20">
         <a href="#inicio" className="flex items-center gap-2" aria-label="KF Empréstimos">
           <img src={logo} alt="KF Empréstimos" width={40} height={40} className="h-10 w-10" />
-          <span className="flex items-center gap-2 font-bold text-primary tracking-tight text-lg uppercase">
-            <span>KF <span className="text-accent">Empréstimos</span></span>
-            <img src={febrabanLogo} alt="FEBRABAN" width={26} height={32} className="h-8 w-auto" />
+          <span className="font-bold text-primary tracking-tight text-lg uppercase">
+            KF <span className="text-accent">Empréstimos</span>
           </span>
         </a>
 
