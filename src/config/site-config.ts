@@ -7,14 +7,16 @@ export type SiteConfig = {
   email: string;
   address: string;
   hours: string;
+  instagramUrl: string;
 };
 
 export const DEFAULT_SITE_CONFIG: SiteConfig = {
   whatsappNumber: "5598999999999",
   whatsappDisplay: "(98) 99999-9999",
-  email: "contato@kfemprestimos.com.br",
-  address: "São Luís - MA",
-  hours: "Segunda a sexta, 9h às 18h",
+  email: "kfemprestimos@gmail.com",
+  address: "Av. Leste-Oeste, Cohatrac I, São Luís - MA",
+  hours: "Segunda a sexta, 8h às 18h",
+  instagramUrl: "https://www.instagram.com/kfemprestimos",
 };
 
 const STORAGE_KEY = "kf:site-config";
