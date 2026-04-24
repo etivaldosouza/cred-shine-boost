@@ -11,8 +11,8 @@ export type SiteConfig = {
 };
 
 export const DEFAULT_SITE_CONFIG: SiteConfig = {
-  whatsappNumber: "5598999999999",
-  whatsappDisplay: "(98) 99999-9999",
+  whatsappNumber: "5598981878948",
+  whatsappDisplay: "(98) 98187-8948",
   email: "kfemprestimos@gmail.com",
   address: "Av. Leste-Oeste, Cohatrac I, São Luís - MA",
   hours: "Segunda a sexta, 8h às 18h",
