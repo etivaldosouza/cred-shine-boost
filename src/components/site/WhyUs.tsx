@@ -30,7 +30,7 @@ export const WhyUs = () => (
         </div>
       </div>
 
-      <div className="max-w-2xl">
+      <div className="max-w-2xl mt-16 md:mt-20">
         <span className="text-xs font-semibold uppercase tracking-wider text-accent">Por que escolher</span>
         <h2 className="mt-3 text-3xl md:text-5xl font-extrabold text-primary tracking-tight">
           Diferenciais KF Empréstimos
