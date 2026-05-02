@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="44">
-    <tspan fill="#F57920">K</tspan><tspan fill="#0A2C6E">F</tspan>
+    <tspan fill="hsl(22, 95%, 54%)">K</tspan><tspan fill="hsl(218, 84%, 22%)">F</tspan>
   </text>
 </svg>
